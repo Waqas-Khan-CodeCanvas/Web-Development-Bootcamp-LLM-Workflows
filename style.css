@@ -1,0 +1,324 @@
+/* Base styles */
+:root {
+  --bg-gradient-from: #0f172a;
+  --bg-gradient-to: #1e293b;
+  --card-bg: rgba(30, 41, 59, 0.5);
+  --card-border: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --input-bg: rgba(51, 65, 85, 0.5);
+  --input-border: #475569;
+  --highlight: #8b5cf6;
+  --shadow: rgba(0, 0, 0, 0.3);
+}
+
+/* Light theme */
+body.light-theme {
+  --bg-gradient-from: #f1f5f9;
+  --bg-gradient-to: #e2e8f0;
+  --card-bg: rgba(255, 255, 255, 0.5);
+  --card-border: #cbd5e1;
+  --text-primary: #0f172a;
+  --text-secondary: #1e293b;
+  --text-muted: #64748b;
+  --input-bg: rgba(241, 245, 249, 0.5);
+  --input-border: #cbd5e1;
+  --highlight: #8b5cf6;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* Dark theme */
+body.dark-theme {
+  --bg-gradient-from: #0f172a;
+  --bg-gradient-to: #1e293b;
+  --card-bg: rgba(30, 41, 59, 0.5);
+  --card-border: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --input-bg: rgba(51, 65, 85, 0.5);
+  --input-border: #475569;
+  --highlight: #8b5cf6;
+  --shadow: rgba(0, 0, 0, 0.3);
+}
+
+body {
+  background: linear-gradient(to bottom right, var(--bg-gradient-from), var(--bg-gradient-to));
+  color: var(--text-primary);
+  transition: background 0.3s ease;
+  min-height: 100vh;
+}
+
+.bg-slate-800\/50 {
+  background-color: var(--card-bg);
+  border-color: var(--card-border);
+  box-shadow: 0 8px 32px var(--shadow);
+}
+
+textarea, input, select {
+  background-color: var(--input-bg) !important;
+  border-color: var(--input-border) !important;
+  color: var(--text-primary) !important;
+}
+
+.response-card {
+  background-color: var(--card-bg);
+  border-color: var(--card-border);
+}
+
+.text-slate-300 {
+  color: var(--text-secondary);
+}
+
+.text-slate-400 {
+  color: var(--text-muted);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(30, 41, 59, 0.5);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.5);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 92, 246, 0.8);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.response-card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Typing indicator */
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.typing-indicator span {
+    height: 8px;
+    width: 8px;
+    background-color: #a78bfa;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 4px;
+    opacity: 0.6;
+}
+
+.typing-indicator span:nth-child(1) {
+    animation: pulse 1s infinite;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation: pulse 1s infinite 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation: pulse 1s infinite 0.4s;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.2); opacity: 1; }
+}
+
+/* Code blocks styling */
+.code-block {
+    position: relative;
+    background-color: rgba(15, 23, 42, 0.8);
+    border-radius: 8px;
+    margin: 16px 0;
+    overflow: hidden;
+}
+
+.code-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(30, 41, 59, 0.8);
+    padding: 8px 12px;
+    font-size: 12px;
+}
+
+.code-language {
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+.copy-button {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.copy-button:hover {
+    color: white;
+}
+
+.code-content {
+    padding: 16px;
+    overflow-x: auto;
+    font-family: monospace;
+    white-space: pre;
+    color: #e2e8f0;
+    line-height: 1.5;
+}
+
+/* Highlight for text and code */
+.highlight {
+    background-color: rgba(139, 92, 246, 0.15);
+    border-radius: 2px;
+    padding: 0 2px;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 640px) {
+    .mode-btn {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+    
+    .response-card {
+        padding: 16px;
+    }
+    
+    #responses-container {
+        max-height: 400px;
+    }
+}
+
+/* Loading effect for buttons */
+.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.loading:after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin: -10px 0 0 -10px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Typing indicator animation */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+}
+
+.typing-indicator span {
+  height: 8px;
+  width: 8px;
+  margin: 0 2px;
+  background-color: var(--text-muted);
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes pulse {
+  0%, 60%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  30% {
+    transform: scale(1.5);
+    opacity: 0.8;
+  }
+}
+
+/* Code block styling */
+.code-block {
+  background-color: rgba(15, 23, 42, 0.8);
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+  overflow: hidden;
+}
+
+.code-header {
+  background-color: rgba(30, 41, 59, 0.8);
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.code-language {
+  font-family: monospace;
+  color: var(--highlight);
+}
+
+.copy-button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.copy-button:hover {
+  color: var(--text-primary);
+}
+
+.code-content {
+  padding: 1rem;
+  overflow-x: auto;
+  font-family: monospace;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
+} 
