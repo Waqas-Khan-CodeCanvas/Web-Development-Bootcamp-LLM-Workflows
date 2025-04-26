@@ -143,7 +143,7 @@ export default {
     const settings = reactive({
       apiKey:
         localStorage.getItem("gemini-api-key") ||
-        "AIzaSyD6phy74bsjc3ShcS6aQ5lajcymyUDtkJI",
+        "",
       model: localStorage.getItem("gemini-model") || "gemini-1.5-flash",
     });
 
